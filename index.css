@@ -1,0 +1,470 @@
+/* ============================================
+   EAT A DICK BUMPER STICKER — Site CSS
+   Aesthetic: Bold Retro Punk / Screenprint
+   ============================================ */
+
+:root {
+  --red: #D72B2B;
+  --red-dark: #A01B1B;
+  --yellow: #FFD600;
+  --yellow-dim: #C9A800;
+  --black: #0A0A0A;
+  --off-black: #111111;
+  --white: #F5F0E8;
+  --gray: #2A2A2A;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-handwritten: 'Permanent Marker', cursive;
+  --font-mono: 'Space Mono', monospace;
+}
+
+/* === RESET & BASE === */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: var(--black);
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-mono);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* === SCANLINES EFFECT === */
+.scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    rgba(0, 0, 0, 0.08) 3px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+}
+
+/* === HEADER === */
+header {
+  background: var(--red);
+  border-bottom: 6px solid var(--yellow);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 20px,
+    rgba(0,0,0,0.06) 20px,
+    rgba(0,0,0,0.06) 40px
+  );
+  pointer-events: none;
+}
+
+.header-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 48px 24px 36px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  color: var(--yellow);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  opacity: 0.85;
+}
+
+h1.title {
+  font-family: var(--font-display);
+  line-height: 0.9;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+h1.title .eat {
+  font-size: clamp(6rem, 20vw, 12rem);
+  color: var(--yellow);
+  text-shadow: 6px 6px 0 var(--red-dark), 8px 8px 0 rgba(0,0,0,0.3);
+  letter-spacing: -0.02em;
+  animation: title-drop 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+h1.title .a {
+  font-size: clamp(3rem, 10vw, 6rem);
+  color: var(--white);
+  opacity: 0.7;
+  animation: title-drop 0.6s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+h1.title .dick {
+  font-size: clamp(6rem, 20vw, 12rem);
+  color: var(--yellow);
+  text-shadow: 6px 6px 0 var(--red-dark), 8px 8px 0 rgba(0,0,0,0.3);
+  letter-spacing: -0.02em;
+  animation: title-drop 0.6s 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes title-drop {
+  from { opacity: 0; transform: translateY(-30px) skewX(-4deg); }
+  to   { opacity: 1; transform: translateY(0) skewX(0); }
+}
+
+.subtitle {
+  font-family: var(--font-handwritten);
+  font-size: clamp(1rem, 3vw, 1.4rem);
+  color: var(--white);
+  margin-top: 8px;
+  opacity: 0.9;
+  animation: fade-up 0.7s 0.4s ease both;
+}
+
+/* === MARQUEE BAR === */
+.marquee-bar {
+  background: var(--yellow);
+  overflow: hidden;
+  padding: 8px 0;
+  border-top: 3px solid rgba(0,0,0,0.2);
+}
+
+.marquee-track {
+  white-space: nowrap;
+  display: inline-block;
+  animation: marquee 18s linear infinite;
+}
+
+.marquee-track span {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  color: var(--red-dark);
+  padding-right: 0;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* === HERO === */
+.hero {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 64px 24px;
+  animation: fade-up 0.7s 0.5s ease both;
+}
+
+.sticker-display {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Sticker mockup */
+.sticker-wrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.sticker-mockup {
+  background: var(--white);
+  border-radius: 6px;
+  width: 340px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid rgba(0,0,0,0.15);
+  box-shadow: 0 0 0 4px var(--gray), 0 12px 48px rgba(0,0,0,0.6);
+  transform: rotate(-1.5deg);
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sticker-mockup:hover {
+  transform: rotate(0deg) scale(1.03);
+  box-shadow: 0 0 0 4px var(--yellow), 0 20px 60px rgba(0,0,0,0.7);
+}
+
+.sticker-label {
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  color: var(--red);
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+
+.sticker-sub {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: var(--off-black);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-top: 4px;
+  opacity: 0.5;
+}
+
+.sticker-shadow {
+  position: absolute;
+  bottom: -10px;
+  left: 10px;
+  right: -10px;
+  height: 100px;
+  background: rgba(215, 43, 43, 0.25);
+  border-radius: 6px;
+  filter: blur(16px);
+  z-index: 0;
+}
+
+/* Hero copy */
+.hero-copy {
+  flex: 1;
+  min-width: 260px;
+}
+
+.tagline {
+  font-family: var(--font-handwritten);
+  font-size: clamp(1.3rem, 3vw, 1.7rem);
+  color: var(--white);
+  line-height: 1.4;
+  margin-bottom: 24px;
+}
+
+.tagline strong {
+  color: var(--yellow);
+}
+
+.features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.features li {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--white);
+  opacity: 0.85;
+  letter-spacing: 0.05em;
+  padding-left: 0;
+}
+
+/* === BUY SECTION === */
+.buy-section {
+  background: var(--off-black);
+  border-top: 4px solid var(--gray);
+  border-bottom: 4px solid var(--gray);
+  padding: 64px 24px;
+}
+
+.buy-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.buy-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  color: var(--yellow);
+  letter-spacing: 0.1em;
+}
+
+.divider {
+  width: 80px;
+  height: 4px;
+  background: var(--red);
+  margin: 12px auto 0;
+}
+
+.buy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.buy-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 28px 24px;
+  border: 2px solid var(--gray);
+  border-radius: 4px;
+  text-decoration: none;
+  background: var(--black);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.buy-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.buy-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+}
+
+/* Amazon */
+.buy-card.amazon { border-color: #FF9900; }
+.buy-card.amazon::before { background: linear-gradient(135deg, rgba(255,153,0,0.08), transparent); }
+.buy-card.amazon:hover { border-color: #FF9900; box-shadow: 0 12px 40px rgba(255,153,0,0.2); }
+.buy-card.amazon:hover::before { opacity: 1; }
+.buy-card.amazon .platform-badge { color: #FF9900; }
+.buy-card.amazon .arrow { color: #FF9900; }
+
+/* eBay */
+.buy-card.ebay { border-color: #0064D2; }
+.buy-card.ebay::before { background: linear-gradient(135deg, rgba(0,100,210,0.1), transparent); }
+.buy-card.ebay:hover { box-shadow: 0 12px 40px rgba(0,100,210,0.2); }
+.buy-card.ebay:hover::before { opacity: 1; }
+.buy-card.ebay .platform-badge { color: #3E97FF; }
+.buy-card.ebay .arrow { color: #3E97FF; }
+
+/* Etsy */
+.buy-card.etsy { border-color: #F45800; }
+.buy-card.etsy::before { background: linear-gradient(135deg, rgba(244,88,0,0.1), transparent); }
+.buy-card.etsy:hover { box-shadow: 0 12px 40px rgba(244,88,0,0.2); }
+.buy-card.etsy:hover::before { opacity: 1; }
+.buy-card.etsy .platform-badge { color: #F45800; }
+.buy-card.etsy .arrow { color: #F45800; }
+
+.platform-badge {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.platform-icon {
+  font-size: 2rem;
+  margin: 4px 0;
+}
+
+.platform-name {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--white);
+  letter-spacing: 0.05em;
+}
+
+.platform-cta {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--white);
+  opacity: 0.5;
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+}
+
+.arrow {
+  font-size: 1.4rem;
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  transition: transform 0.2s ease;
+}
+
+.buy-card:hover .arrow {
+  transform: translateX(6px);
+}
+
+/* === FOOTER === */
+footer {
+  background: var(--black);
+  border-top: 3px solid var(--red);
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.footer-inner {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.footer-brand {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--yellow);
+  letter-spacing: 0.15em;
+}
+
+.footer-email,
+.footer-about {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--white);
+  opacity: 0.5;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.footer-email:hover,
+.footer-about:hover {
+  opacity: 1;
+  color: var(--yellow);
+}
+
+.footer-copy {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--white);
+  opacity: 0.25;
+  margin-top: 8px;
+}
+
+/* === ANIMATIONS === */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 600px) {
+  .sticker-mockup {
+    width: 280px;
+    height: 82px;
+  }
+  .sticker-label {
+    font-size: 2.2rem;
+  }
+  .sticker-display {
+    gap: 36px;
+  }
+}
