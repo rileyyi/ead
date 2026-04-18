@@ -8,14 +8,114 @@
   <meta name="keywords" content="eat a dick bumper sticker, atheist coexist parody, eatadick, atheism sticker, funny bumper sticker">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Permanent+Marker&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="index.css">
+  <style>
+    :root {
+      --red: #D72B2B; --red-dark: #A01B1B; --yellow: #FFD600;
+      --black: #0A0A0A; --off-black: #111111; --white: #F5F0E8; --gray: #2A2A2A;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-handwritten: 'Permanent Marker', cursive;
+      --font-mono: 'Space Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { background: var(--black); scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--white); font-family: var(--font-mono); overflow-x: hidden; }
+
+    .scanlines {
+      position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+      background: repeating-linear-gradient(to bottom, transparent 0px, transparent 3px, rgba(0,0,0,0.08) 3px, rgba(0,0,0,0.08) 4px);
+    }
+
+    header { background: var(--red); border-bottom: 6px solid var(--yellow); position: relative; overflow: hidden; }
+    header::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: repeating-linear-gradient(-45deg, transparent, transparent 20px, rgba(0,0,0,0.06) 20px, rgba(0,0,0,0.06) 40px);
+    }
+    .header-inner { max-width: 900px; margin: 0 auto; padding: 48px 24px 36px; text-align: center; position: relative; z-index: 1; }
+    .eyebrow { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.3em; color: var(--yellow); text-transform: uppercase; margin-bottom: 12px; opacity: 0.85; }
+    h1.title { font-family: var(--font-display); line-height: 0.9; display: flex; align-items: baseline; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    h1.title .eat, h1.title .dick { font-size: clamp(6rem, 20vw, 12rem); color: var(--yellow); text-shadow: 6px 6px 0 var(--red-dark), 8px 8px 0 rgba(0,0,0,0.3); letter-spacing: -0.02em; animation: title-drop 0.6s cubic-bezier(0.22,1,0.36,1) both; }
+    h1.title .dick { animation-delay: 0.2s; }
+    h1.title .a { font-size: clamp(3rem, 10vw, 6rem); color: var(--white); opacity: 0.7; animation: title-drop 0.6s 0.1s cubic-bezier(0.22,1,0.36,1) both; }
+    @keyframes title-drop { from { opacity: 0; transform: translateY(-30px) skewX(-4deg); } to { opacity: 1; transform: translateY(0) skewX(0); } }
+    .subtitle { font-family: var(--font-handwritten); font-size: clamp(1rem, 3vw, 1.4rem); color: var(--white); margin-top: 8px; opacity: 0.9; animation: fade-up 0.7s 0.4s ease both; }
+
+    .marquee-bar { background: var(--yellow); overflow: hidden; padding: 8px 0; border-top: 3px solid rgba(0,0,0,0.2); }
+    .marquee-track { white-space: nowrap; display: inline-block; animation: marquee 18s linear infinite; }
+    .marquee-track span { font-family: var(--font-display); font-size: 1rem; letter-spacing: 0.15em; color: var(--red-dark); }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    .hero { max-width: 1000px; margin: 0 auto; padding: 64px 24px; animation: fade-up 0.7s 0.5s ease both; }
+    .sticker-display { display: flex; align-items: center; gap: 56px; flex-wrap: wrap; justify-content: center; }
+    .sticker-wrapper { position: relative; flex-shrink: 0; }
+    .sticker-img { display: block; width: 380px; max-width: 90vw; border-radius: 6px; box-shadow: 0 0 0 3px var(--gray), 0 16px 56px rgba(0,0,0,0.7); transform: rotate(-1.5deg); position: relative; z-index: 1; transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.2s ease; }
+    .sticker-img:hover { transform: rotate(0deg) scale(1.03); box-shadow: 0 0 0 3px var(--yellow), 0 24px 64px rgba(0,0,0,0.8); }
+    .sticker-shadow { position: absolute; bottom: -10px; left: 10px; right: -10px; height: 80px; background: rgba(215,43,43,0.2); border-radius: 6px; filter: blur(20px); z-index: 0; }
+
+    .color-switcher { display: flex; gap: 10px; margin-bottom: 20px; }
+    .color-btn { width: 32px; height: 32px; border-radius: 50%; border: 3px solid transparent; cursor: pointer; transition: transform 0.15s, border-color 0.15s; outline: none; }
+    .color-btn:hover { transform: scale(1.15); }
+    .color-btn.active { border-color: var(--yellow) !important; transform: scale(1.15); }
+
+    .hero-copy { flex: 1; min-width: 260px; }
+    .tagline { font-family: var(--font-handwritten); font-size: clamp(1.3rem, 3vw, 1.7rem); color: var(--white); line-height: 1.4; margin-bottom: 24px; }
+    .tagline strong { color: var(--yellow); }
+    .features { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .features li { font-family: var(--font-mono); font-size: 0.85rem; color: var(--white); opacity: 0.85; letter-spacing: 0.05em; }
+
+    .photo-section { position: relative; overflow: hidden; border-top: 4px solid var(--gray); }
+    .photo-full { width: 100%; display: block; max-height: 480px; object-fit: cover; object-position: center; filter: brightness(0.85); transition: filter 0.3s; }
+    .photo-full:hover { filter: brightness(1); }
+    .photo-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.85)); padding: 32px 24px 16px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--white); letter-spacing: 0.15em; text-align: center; opacity: 0.8; text-transform: uppercase; }
+
+    .buy-section { background: var(--off-black); border-top: 4px solid var(--gray); border-bottom: 4px solid var(--gray); padding: 64px 24px; }
+    .buy-header { text-align: center; margin-bottom: 40px; }
+    .buy-header h2 { font-family: var(--font-display); font-size: clamp(2.5rem, 8vw, 4rem); color: var(--yellow); letter-spacing: 0.1em; }
+    .divider { width: 80px; height: 4px; background: var(--red); margin: 12px auto 0; }
+    .buy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; max-width: 900px; margin: 0 auto; }
+    .buy-card { display: flex; flex-direction: column; gap: 8px; padding: 28px 24px; border: 2px solid var(--gray); border-radius: 4px; text-decoration: none; background: var(--black); position: relative; overflow: hidden; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .buy-card::before { content: ''; position: absolute; inset: 0; opacity: 0; transition: opacity 0.2s ease; }
+    .buy-card:hover { transform: translateY(-4px); }
+    .buy-card.amazon { border-color: #FF9900; }
+    .buy-card.amazon::before { background: linear-gradient(135deg, rgba(255,153,0,0.08), transparent); }
+    .buy-card.amazon:hover { box-shadow: 0 12px 40px rgba(255,153,0,0.2); }
+    .buy-card.amazon:hover::before { opacity: 1; }
+    .buy-card.amazon .platform-badge, .buy-card.amazon .arrow { color: #FF9900; }
+    .buy-card.ebay { border-color: #0064D2; }
+    .buy-card.ebay::before { background: linear-gradient(135deg, rgba(0,100,210,0.1), transparent); }
+    .buy-card.ebay:hover { box-shadow: 0 12px 40px rgba(0,100,210,0.2); }
+    .buy-card.ebay:hover::before { opacity: 1; }
+    .buy-card.ebay .platform-badge, .buy-card.ebay .arrow { color: #3E97FF; }
+    .buy-card.etsy { border-color: #F45800; }
+    .buy-card.etsy::before { background: linear-gradient(135deg, rgba(244,88,0,0.1), transparent); }
+    .buy-card.etsy:hover { box-shadow: 0 12px 40px rgba(244,88,0,0.2); }
+    .buy-card.etsy:hover::before { opacity: 1; }
+    .buy-card.etsy .platform-badge, .buy-card.etsy .arrow { color: #F45800; }
+    .platform-badge { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.25em; text-transform: uppercase; }
+    .platform-icon { font-size: 2rem; margin: 4px 0; }
+    .platform-name { font-family: var(--font-display); font-size: 1.6rem; color: var(--white); letter-spacing: 0.05em; }
+    .platform-cta { font-family: var(--font-mono); font-size: 0.72rem; color: var(--white); opacity: 0.5; letter-spacing: 0.05em; margin-top: 2px; }
+    .arrow { font-size: 1.4rem; margin-top: 8px; font-family: var(--font-mono); transition: transform 0.2s ease; }
+    .buy-card:hover .arrow { transform: translateX(6px); }
+
+    footer { background: var(--black); border-top: 3px solid var(--red); padding: 40px 24px; text-align: center; }
+    .footer-inner { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; align-items: center; }
+    .footer-brand { font-family: var(--font-display); font-size: 1.4rem; color: var(--yellow); letter-spacing: 0.15em; }
+    .footer-email, .footer-about { font-family: var(--font-mono); font-size: 0.8rem; color: var(--white); opacity: 0.5; text-decoration: none; transition: opacity 0.2s; }
+    .footer-email:hover, .footer-about:hover { opacity: 1; color: var(--yellow); }
+    .footer-copy { font-family: var(--font-mono); font-size: 0.7rem; color: var(--white); opacity: 0.25; margin-top: 8px; }
+
+    @keyframes fade-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 600px) {
+      .sticker-img { width: 280px; }
+      .sticker-display { gap: 36px; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Scanline overlay -->
   <div class="scanlines"></div>
 
-  <!-- Header -->
   <header>
     <div class="header-inner">
       <div class="eyebrow">THE ORIGINAL SINCE 2015</div>
@@ -33,18 +133,19 @@
     </div>
   </header>
 
-  <!-- Sticker Hero -->
   <section class="hero">
     <div class="sticker-display">
       <div class="sticker-wrapper">
-        <div class="sticker-mockup">
-          <div class="sticker-label">EAT A DICK</div>
-          <div class="sticker-sub">THE COEXIST PARODY</div>
-        </div>
+        <img src="sticker-black.jpg" alt="Eat A Dick bumper sticker — white on black" class="sticker-img" id="stickerImg">
         <div class="sticker-shadow"></div>
       </div>
       <div class="hero-copy">
         <p class="tagline">You've seen the Coexist sticker.<br><strong>Now meet its nemesis.</strong></p>
+        <div class="color-switcher">
+          <button class="color-btn active" data-src="sticker-black.jpg" style="background:#111; border-color:#fff;"></button>
+          <button class="color-btn" data-src="sticker-blue.jpg" style="background:#1a1fc8;"></button>
+          <button class="color-btn" data-src="sticker-white.jpg" style="background:#f5f0e8;"></button>
+        </div>
         <ul class="features">
           <li>✦ Weatherproof vinyl</li>
           <li>✦ Removable &amp; repositionable</li>
@@ -55,14 +156,17 @@
     </div>
   </section>
 
-  <!-- Buy Section -->
+  <section class="photo-section">
+    <img src="sticker-photo.jpg" alt="Real photos of the Eat A Dick bumper sticker in all colors" class="photo-full">
+    <div class="photo-caption">Available in Black, Blue &amp; White — all 3 colorways shown</div>
+  </section>
+
   <section class="buy-section">
     <div class="buy-header">
       <h2>WHERE TO BUY</h2>
       <div class="divider"></div>
     </div>
     <div class="buy-grid">
-
       <a href="https://a.co/d/02sG0W5G" target="_blank" rel="noopener" class="buy-card amazon">
         <div class="platform-badge">AMAZON</div>
         <div class="platform-icon">📦</div>
@@ -70,7 +174,6 @@
         <div class="platform-cta">Prime eligible → Fast shipping</div>
         <div class="arrow">→</div>
       </a>
-
       <a href="https://ebay.us/m/NoCoP4" target="_blank" rel="noopener" class="buy-card ebay">
         <div class="platform-badge">EBAY</div>
         <div class="platform-icon">🔨</div>
@@ -78,7 +181,6 @@
         <div class="platform-cta">Buy it now · Best offer welcome</div>
         <div class="arrow">→</div>
       </a>
-
       <a href="https://www.etsy.com/listing/213781133/the-original-eat-a-dick-atheist-coexist" target="_blank" rel="noopener" class="buy-card etsy">
         <div class="platform-badge">ETSY</div>
         <div class="platform-icon">🛍️</div>
@@ -86,11 +188,9 @@
         <div class="platform-cta">Handmade marketplace · Reviews ★★★★★</div>
         <div class="arrow">→</div>
       </a>
-
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
     <div class="footer-inner">
       <div class="footer-brand">EAT A DICK BUMPER STICKER</div>
@@ -100,7 +200,18 @@
     </div>
   </footer>
 
-  <!-- Google Analytics -->
+  <script>
+    document.querySelectorAll('.color-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const img = document.getElementById('stickerImg');
+        img.style.opacity = '0';
+        setTimeout(() => { img.src = btn.dataset.src; img.style.opacity = '1'; }, 200);
+      });
+    });
+  </script>
+
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-59846811-1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
